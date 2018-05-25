@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Street Light Dashboard</title>
+  
+ <!-- Firebase App is always required and must be first -->
+<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-app.js"></script>
+
+<!-- Add additional services you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-functions.js"></script>
+
+  <!-- Leave out Storage -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-storage.js"></script> -->
+
+  <script>
+    var config = {
+      // ...
+    };
+  firebase.initializeApp(config);
+  </script>
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css'>
+</head>
+
+
+<body  style="background-color:default" >
+
+  <div class="container">
+
+  <div class="header jumbotron text-center" style="background-color:#2D45DD">
+    <h1 class="display-4"> <font color="white"><b>DASHBOARD</b></font> </h1> 
+  </div>
+
+  <div class="row text-center" id="row-2">
+
+    <div class="col-3"  >
+     
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="light-photo" class="img-fluid" id="light-1"> 
+     <h4> <font color="green"><b> Light-1 </b></font> </h4> 
+    </div>
+    
+    <div class="col-3"  >
+     
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="light-photo" id="light-2" class="img-fluid"> 
+     <h4> <font color="green"> <b> Light-2 </b> </font> </h4>
+    </div>
+    
+    <div class="col-3"   >
+      
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="light-photo" id="light-3"  class="img-fluid">
+    <h4> <font color="green"> <b>Light-3</b> </font> </h4> 
+    </div>
+    
+    <div class="col-3"   >
+     
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="light-photo" id="light-4"  class="img-fluid"> 
+      <h4> <font color="green"> <b> Light-4 </b> </font> </h4>
+    </div>
+
+   </div>
+ </div>
+
+<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCzAPqYHSapDVa2yN289A20fEjLgnq5Fys",
+    authDomain: "streetlightiot-8b025.firebaseapp.com",
+    databaseURL: "https://streetlightiot-8b025.firebaseio.com",
+    projectId: "streetlightiot-8b025",
+    storageBucket: "streetlightiot-8b025.appspot.com",
+    messagingSenderId: "818865604808"
+  };
+  firebase.initializeApp(config);
+  var lightOnImageUrl = "https://bit.ly/2HrEeDV";
+  var lightOffImageUrl = "https://bit.ly/2Ju8zyn";
+  var dbRef1 = firebase.database().ref().child('Light-1');
+  dbRef1.on('value', snap => checkLight1Status(snap.val()));
+  var dbRef2 = firebase.database().ref().child('Light-2');
+  dbRef2.on('value', snap => checkLight2Status(snap.val()));
+  var dbRef3 = firebase.database().ref().child('Light-3');
+  dbRef3.on('value', snap => checkLight3Status(snap.val()));
+  var dbRef4 = firebase.database().ref().child('Light-4');
+  dbRef4.on('value', snap => checkLight4Status(snap.val()));
+
+ function checkLight1Status(status) {
+	var light1Image = document.getElementById("light-1");
+	if(status == "ON") {
+		light1Image.src = lightOnImageUrl;
+	} else {
+		light1Image.src = lightOffImageUrl;
+                  
+	}
+  }
+  function checkLight2Status(status) {
+	var light1Image = document.getElementById("light-2");
+	if(status == "ON") {
+		light1Image.src = lightOnImageUrl;
+	} else {
+		light1Image.src = lightOffImageUrl;
+	}
+  }
+  function checkLight3Status(status) {
+	var light1Image = document.getElementById("light-3");
+	if(status == "ON") {
+		light1Image.src = lightOnImageUrl;
+	} else {
+		light1Image.src = lightOffImageUrl;
+	}
+  }
+  function checkLight4Status(status) {
+	var light1Image = document.getElementById("light-4");
+	if(status == "ON") {
+		light1Image.src = lightOnImageUrl;
+	} else {
+		light1Image.src = lightOffImageUrl;
+	}
+  }
+</script>
+
+</body>
+
+</html>
